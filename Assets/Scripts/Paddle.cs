@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Paddle : MonoBehaviour {
 
@@ -11,6 +12,14 @@ public class Paddle : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         GetComponent<Rigidbody2D>().velocity = Vector2.right * h * speed;
 
-        // TODO Add input smoothing!
+        if (GameState.GameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("BreakoutMenuScene");
+            }
+        }
     }
+
+
 }
